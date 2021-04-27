@@ -9,8 +9,9 @@
 ```
 
 
-# 0.1.1
+# 0.1.2
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+| 4f54c90 | 2021-04-27 | Chris Schubert | Adding meta files |
 | 549ba98 | 2021-04-27 | Chris Schubert | Adding meta files |
 | f484136 | 2021-04-27 | Chris Schubert | Setting up fork of nav mesh components |
