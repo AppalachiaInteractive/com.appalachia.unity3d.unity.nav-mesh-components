@@ -1,11 +1,13 @@
+using UnityEditor;
+using UnityEditor.AI;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace UnityEditor.AI
+namespace Unity.AI.Navigation.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshLink))]
-    class NavMeshLinkEditor : Editor
+    class NavMeshLinkEditor : UnityEditor.Editor
     {
         SerializedProperty m_AgentTypeID;
         SerializedProperty m_Area;
@@ -138,7 +140,7 @@ namespace UnityEditor.AI
         [DrawGizmo(GizmoType.Selected | GizmoType.Active | GizmoType.Pickable)]
         static void RenderBoxGizmo(NavMeshLink navLink, GizmoType gizmoType)
         {
-            if (!EditorApplication.isPlaying)
+            if (!EditorApplication.isPlaying && navLink.isActiveAndEnabled)
                 navLink.UpdateLink();
 
             var color = s_HandleColor;

@@ -1,20 +1,22 @@
 #define NAVMESHCOMPONENTS_SHOW_NAVMESHDATA_REF
 
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using UnityEditor;
+using UnityEditor.AI;
+#if !UNITY_2021_2_OR_NEWER
 using UnityEditor.Experimental.SceneManagement;
-using UnityEditor.IMGUI.Controls;
+#endif
 using UnityEditor.SceneManagement;
+using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
 using UnityEngine.AI;
 using UnityEngine;
 
-namespace UnityEditor.AI
+namespace Unity.AI.Navigation.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshSurface))]
-    class NavMeshSurfaceEditor : Editor
+    class NavMeshSurfaceEditor : UnityEditor.Editor
     {
         SerializedProperty m_AgentTypeID;
         SerializedProperty m_BuildHeightMesh;
@@ -28,6 +30,7 @@ namespace UnityEditor.AI
         SerializedProperty m_TileSize;
         SerializedProperty m_UseGeometry;
         SerializedProperty m_VoxelSize;
+        SerializedProperty m_MinRegionArea;
 
 #if NAVMESHCOMPONENTS_SHOW_NAVMESHDATA_REF
         SerializedProperty m_NavMeshData;
@@ -35,6 +38,7 @@ namespace UnityEditor.AI
         class Styles
         {
             public readonly GUIContent m_LayerMask = new GUIContent("Include Layers");
+            public readonly GUIContent m_MinRegionArea = new GUIContent("Minimum Region Area");
 
             public readonly GUIContent m_ShowInputGeom = new GUIContent("Show Input Geom");
             public readonly GUIContent m_ShowVoxels = new GUIContent("Show Voxels");
@@ -74,6 +78,7 @@ namespace UnityEditor.AI
             m_TileSize = serializedObject.FindProperty("m_TileSize");
             m_UseGeometry = serializedObject.FindProperty("m_UseGeometry");
             m_VoxelSize = serializedObject.FindProperty("m_VoxelSize");
+            m_MinRegionArea = serializedObject.FindProperty("m_MinRegionArea");
 
 #if NAVMESHCOMPONENTS_SHOW_NAVMESHDATA_REF
             m_NavMeshData = serializedObject.FindProperty("m_NavMeshData");
@@ -187,6 +192,7 @@ namespace UnityEditor.AI
                     EditorGUI.indentLevel--;
                 }
 
+                EditorGUILayout.PropertyField(m_MinRegionArea, s_Styles.m_MinRegionArea);
 
                 // Height mesh
                 using (new EditorGUI.DisabledScope(true))
@@ -253,6 +259,7 @@ namespace UnityEditor.AI
             using (new EditorGUI.DisabledScope(Application.isPlaying || m_AgentTypeID.intValue == -1))
             {
                 GUILayout.BeginHorizontal();
+                GUILayout.Space(EditorGUIUtility.labelWidth);
                 if (GUILayout.Button("Clear"))
                 {
                     NavMeshAssetManager.instance.ClearSurfaces(targets);

@@ -1,10 +1,12 @@
+using UnityEditor;
+using UnityEditor.AI;
 using UnityEngine.AI;
 
-namespace UnityEditor.AI
+namespace Unity.AI.Navigation.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshModifier))]
-    class NavMeshModifierEditor : Editor
+    class NavMeshModifierEditor : UnityEditor.Editor
     {
         SerializedProperty m_AffectedAgents;
         SerializedProperty m_Area;

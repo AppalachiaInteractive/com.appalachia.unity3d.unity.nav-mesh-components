@@ -1,12 +1,18 @@
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
+#if !UNITY_2021_2_OR_NEWER
 using UnityEditor.Experimental.SceneManagement;
+#endif
 using UnityEditor.SceneManagement;
-using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.AI;
 
-namespace UnityEditor.AI
+namespace Unity.AI.Navigation.Editor
 {
+    /// <summary>
+    /// Manages assets and baking operation of the navmesh 
+    /// </summary>
     public class NavMeshAssetManager : ScriptableSingleton<NavMeshAssetManager>
     {
         internal struct AsyncBakeOperation
@@ -41,11 +47,20 @@ namespace UnityEditor.AI
             {
                 var prefabStage = PrefabStageUtility.GetPrefabStage(surface.gameObject);
                 var isPartOfPrefab = prefabStage != null && prefabStage.IsPartOfPrefabContents(surface.gameObject);
-                if (isPartOfPrefab && !string.IsNullOrEmpty(prefabStage.prefabAssetPath))
+
+                if (isPartOfPrefab)
                 {
-                    var prefabDirectoryName = Path.GetDirectoryName(prefabStage.prefabAssetPath);
-                    if (!string.IsNullOrEmpty(prefabDirectoryName))
-                        targetPath = prefabDirectoryName;
+#if UNITY_2020_1_OR_NEWER
+                    var assetPath = prefabStage.assetPath;
+#else
+                    var assetPath = prefabStage.prefabAssetPath;
+#endif
+                    if (!string.IsNullOrEmpty(assetPath))
+                    {
+                        var prefabDirectoryName = Path.GetDirectoryName(assetPath);
+                        if (!string.IsNullOrEmpty(prefabDirectoryName))
+                            targetPath = prefabDirectoryName;
+                    }
                 }
             }
             if (!Directory.Exists(targetPath))
@@ -99,7 +114,11 @@ namespace UnityEditor.AI
                 AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(assetToDelete));
         }
 
-        public void StartBakingSurfaces(UnityEngine.Object[] surfaces)
+        /// <summary>
+        /// Start baking a list of NavMeshSurface
+        /// </summary>
+        /// <param name="surfaces">List of surfaces</param>
+        public void StartBakingSurfaces(Object[] surfaces)
         {
             // Remove first to avoid double registration of the callback
             EditorApplication.update -= UpdateAsyncBuildOperations;
@@ -155,6 +174,11 @@ namespace UnityEditor.AI
                 EditorApplication.update -= UpdateAsyncBuildOperations;
         }
 
+        /// <summary>
+        /// Checks if an operation of baking is in progress for a specified surface
+        /// </summary>
+        /// <param name="surface">A navmesh surface</param>
+        /// <returns>True if the specified surface is baking</returns>
         public bool IsSurfaceBaking(NavMeshSurface surface)
         {
             if (surface == null)
@@ -172,7 +196,11 @@ namespace UnityEditor.AI
             return false;
         }
 
-        public void ClearSurfaces(UnityEngine.Object[] surfaces)
+        /// <summary>
+        /// Clear navmesh surfaces
+        /// </summary>
+        /// <param name="surfaces">List of surfaces</param>
+        public void ClearSurfaces(Object[] surfaces)
         {
             foreach (NavMeshSurface s in surfaces)
                 ClearSurface(s);
