@@ -1,5 +1,4 @@
 ```
-/c/Users/Chris/com.appalachia/appa/cmd/print/Changes.sh
  ________   ___  ___   ________   ________    ________   _______    ________      
 |\   ____\ |\  \|\  \ |\   __  \ |\   ___  \ |\   ____\ |\  ___ \  |\   ____\     
 \ \  \___| \ \  \\\  \\ \  \|\  \\ \  \\ \  \\ \  \___| \ \   __/| \ \  \___|_    
@@ -9,14 +8,21 @@
     \|_______| \|__|\|__| \|__|\|__| \|__| \|__| \|_______| \|_______||\_________\
                                                                       \|_________|
 ```
+
 ## Releasing
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
-| 4f54c90 | 2021-04-27 | Chris Schubert | Adding meta files |
+| 104656a788199284914188dc6b3ccc01d7d1cf4d | 2021-08-02 | Chris Schubert | Packaging and publishing updates |
 
 
- ## Tag: v0.1.1
+ ## Tag: `v0.1.2`
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
-| 549ba98 | 2021-04-27 | Chris Schubert | Adding meta files |
-| f484136 | 2021-04-27 | Chris Schubert | Setting up fork of nav mesh components |
+| 4f54c902866e0cbd6e807418e37edad088d893e2 | 2021-04-27 | Chris Schubert | Adding meta files |
+
+
+ ## Tag: `v0.1.1`
+| Hash | Date | Author | Changes |
+|------|------|--------|---------|
+| 549ba985583eced6671dfc2c0104e2155fee3022 | 2021-04-27 | Chris Schubert | Adding meta files |
+| f484136dd6368083a2bcb81b9c34d7326f36de61 | 2021-04-27 | Chris Schubert | Setting up fork of nav mesh components |

@@ -1,5 +1,4 @@
 ```
-/c/Users/Chris/com.appalachia/appa/cmd/print/RELEASE.sh
  ______   ______   __       ______   ______   ______   ______    
 /\  == \ /\  ___\ /\ \     /\  ___\ /\  __ \ /\  ___\ /\  ___\   
 \ \  __< \ \  __\ \ \ \____\ \  __\ \ \  __ \\ \___  \\ \  __\   
@@ -9,9 +8,9 @@
 ```
 
 
-# 0.1.2
+## Released Changes
+
+
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
-| 4f54c90 | 2021-04-27 | Chris Schubert | Adding meta files |
-| 549ba98 | 2021-04-27 | Chris Schubert | Adding meta files |
-| f484136 | 2021-04-27 | Chris Schubert | Setting up fork of nav mesh components |
+| 104656a788199284914188dc6b3ccc01d7d1cf4d | 2021-08-02 | Chris Schubert | Packaging and publishing updates |
