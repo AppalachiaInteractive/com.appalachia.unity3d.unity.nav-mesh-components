@@ -32,9 +32,9 @@ namespace Unity.AI.Navigation.Editor
 
             if (EditorGUI.EndChangeCheck())
             {
-                if (areaIndex >= 0 && areaIndex < areaNames.Length - 2)
+                if ((areaIndex >= 0) && (areaIndex < (areaNames.Length - 2)))
                     areaProperty.intValue = GameObjectUtility.GetNavMeshAreaFromName(areaNames[areaIndex]);
-                else if (areaIndex == areaNames.Length - 1)
+                else if (areaIndex == (areaNames.Length - 1))
                     NavMeshEditorHelpers.OpenAreaSettings();
             }
 
@@ -73,12 +73,12 @@ namespace Unity.AI.Navigation.Editor
             index = EditorGUI.Popup(rect, labelName, index, agentTypeNames);
             if (EditorGUI.EndChangeCheck())
             {
-                if (index >= 0 && index < count)
+                if ((index >= 0) && (index < count))
                 {
                     var id = NavMesh.GetSettingsByIndex(index).agentTypeID;
                     agentTypeID.intValue = id;
                 }
-                else if (index == count + 1)
+                else if (index == (count + 1))
                 {
                     NavMeshEditorHelpers.OpenAgentSettings(-1);
                 }
@@ -114,7 +114,7 @@ namespace Unity.AI.Navigation.Editor
             if (pressed)
             {
                 var show = !agentMask.hasMultipleDifferentValues;
-                var showNone = show && agentMask.arraySize == 0;
+                var showNone = show && (agentMask.arraySize == 0);
                 var showAll = show && IsAll(agentMask);
 
                 var menu = new GenericMenu();
@@ -163,7 +163,7 @@ namespace Unity.AI.Navigation.Editor
         /// <returns></returns>
         static bool IsAll(SerializedProperty agentMask)
         {
-            return agentMask.arraySize == 1 && agentMask.GetArrayElementAtIndex(0).intValue == -1;
+            return (agentMask.arraySize == 1) && (agentMask.GetArrayElementAtIndex(0).intValue == -1);
         }
 
         /// <summary> Marks one agent type as being selected or not. </summary>

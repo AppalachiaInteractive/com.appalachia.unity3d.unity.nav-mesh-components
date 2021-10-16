@@ -243,7 +243,7 @@ namespace Unity.AI.Navigation
             // Use unscaled bounds - this differs in behaviour from e.g. collider components.
             // But is similar to reflection probe - and since navmesh data has no scaling support - it is the right choice here.
             var surfaceBounds = new Bounds(m_Center, Abs(m_Size));
-            if (m_CollectObjects == CollectObjects.All || m_CollectObjects == CollectObjects.Children)
+            if ((m_CollectObjects == CollectObjects.All) || (m_CollectObjects == CollectObjects.Children))
             {
                 surfaceBounds = CalculateWorldBounds(sources);
             }
@@ -272,7 +272,7 @@ namespace Unity.AI.Navigation
             // Use unscaled bounds - this differs in behaviour from e.g. collider components.
             // But is similar to reflection probe - and since navmesh data has no scaling support - it is the right choice here.
             var surfaceBounds = new Bounds(m_Center, Abs(m_Size));
-            if (m_CollectObjects == CollectObjects.All || m_CollectObjects == CollectObjects.Children)
+            if ((m_CollectObjects == CollectObjects.All) || (m_CollectObjects == CollectObjects.Children))
                 surfaceBounds = CalculateWorldBounds(sources);
 
             return NavMeshBuilder.UpdateNavMeshDataAsync(data, GetBuildSettings(), sources, surfaceBounds);
@@ -425,10 +425,10 @@ namespace Unity.AI.Navigation
             }
 
             if (m_IgnoreNavMeshAgent)
-                sources.RemoveAll((x) => (x.component != null && x.component.gameObject.GetComponent<NavMeshAgent>() != null));
+                sources.RemoveAll((x) => ((x.component != null) && (x.component.gameObject.GetComponent<NavMeshAgent>() != null)));
 
             if (m_IgnoreNavMeshObstacle)
-                sources.RemoveAll((x) => (x.component != null && x.component.gameObject.GetComponent<NavMeshObstacle>() != null));
+                sources.RemoveAll((x) => ((x.component != null) && (x.component.gameObject.GetComponent<NavMeshObstacle>() != null)));
 
             AppendModifierVolumes(ref sources);
 
@@ -446,7 +446,7 @@ namespace Unity.AI.Navigation
             var absAxisY = Abs(mat.MultiplyVector(Vector3.up));
             var absAxisZ = Abs(mat.MultiplyVector(Vector3.forward));
             var worldPosition = mat.MultiplyPoint(bounds.center);
-            var worldSize = absAxisX * bounds.size.x + absAxisY * bounds.size.y + absAxisZ * bounds.size.z;
+            var worldSize = (absAxisX * bounds.size.x) + (absAxisY * bounds.size.y) + (absAxisZ * bounds.size.z);
             return new Bounds(worldPosition, worldSize);
         }
 
@@ -524,14 +524,14 @@ namespace Unity.AI.Navigation
 
             // An instance can share asset reference only with its prefab parent
             var prefab = PrefabUtility.GetCorrespondingObjectFromSource(this) as NavMeshSurface;
-            if (prefab != null && prefab.navMeshData == navMeshData)
+            if ((prefab != null) && (prefab.navMeshData == navMeshData))
                 return false;
 
             // Don't allow referencing an asset that's assigned to another surface
             for (var i = 0; i < s_NavMeshSurfaces.Count; ++i)
             {
                 var surface = s_NavMeshSurfaces[i];
-                if (surface != this && surface.m_NavMeshData == m_NavMeshData)
+                if ((surface != this) && (surface.m_NavMeshData == m_NavMeshData))
                     return true;
             }
 

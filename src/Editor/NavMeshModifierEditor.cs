@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEditor.AI;
-using UnityEngine.AI;
 
 namespace Unity.AI.Navigation.Editor
 {

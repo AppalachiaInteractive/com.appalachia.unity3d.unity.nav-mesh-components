@@ -3,7 +3,6 @@ using UnityEditor.AI;
 using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Unity.AI.Navigation.Editor
 {
@@ -23,7 +22,7 @@ namespace Unity.AI.Navigation.Editor
 
         bool editingCollider
         {
-            get { return EditMode.editMode == EditMode.SceneViewEditMode.Collider && EditMode.IsOwner(this); }
+            get { return (EditMode.editMode == EditMode.SceneViewEditMode.Collider) && EditMode.IsOwner(this); }
         }
 
         void OnEnable()
@@ -135,7 +134,7 @@ namespace Unity.AI.Navigation.Editor
         }
 
         [MenuItem("GameObject/AI/NavMesh Modifier Volume", false, 2001)]
-        static public void CreateNavMeshModifierVolume(MenuCommand menuCommand)
+        public static void CreateNavMeshModifierVolume(MenuCommand menuCommand)
         {
             var parent = menuCommand.context as GameObject;
             var go = NavMeshComponentsGUIUtility.CreateAndSelectGameObject("NavMesh Modifier Volume", parent);

@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEditor.AI;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Unity.AI.Navigation.Editor
 {
@@ -131,10 +130,10 @@ namespace Unity.AI.Navigation.Editor
             var right = CalcLinkRight(navLink);
             var rad = navLink.width * 0.5f;
 
-            Gizmos.DrawLine(navLink.startPoint - right * rad, navLink.startPoint + right * rad);
-            Gizmos.DrawLine(navLink.endPoint - right * rad, navLink.endPoint + right * rad);
-            Gizmos.DrawLine(navLink.startPoint - right * rad, navLink.endPoint - right * rad);
-            Gizmos.DrawLine(navLink.startPoint + right * rad, navLink.endPoint + right * rad);
+            Gizmos.DrawLine(navLink.startPoint - (right * rad), navLink.startPoint + (right * rad));
+            Gizmos.DrawLine(navLink.endPoint - (right * rad),   navLink.endPoint + (right * rad));
+            Gizmos.DrawLine(navLink.startPoint - (right * rad), navLink.endPoint - (right * rad));
+            Gizmos.DrawLine(navLink.startPoint + (right * rad), navLink.endPoint + (right * rad));
         }
 
         [DrawGizmo(GizmoType.Selected | GizmoType.Active | GizmoType.Pickable)]
@@ -208,7 +207,7 @@ namespace Unity.AI.Navigation.Editor
 
             Vector3 pos;
 
-            if (navLink.GetInstanceID() == s_SelectedID && s_SelectedPoint == 0)
+            if ((navLink.GetInstanceID() == s_SelectedID) && (s_SelectedPoint == 0))
             {
                 EditorGUI.BeginChangeCheck();
                 Handles.CubeHandleCap(0, startPt, zup, 0.1f * startSize, Event.current.type);
@@ -228,7 +227,7 @@ namespace Unity.AI.Navigation.Editor
                 }
             }
 
-            if (navLink.GetInstanceID() == s_SelectedID && s_SelectedPoint == 1)
+            if ((navLink.GetInstanceID() == s_SelectedID) && (s_SelectedPoint == 1))
             {
                 EditorGUI.BeginChangeCheck();
                 Handles.CubeHandleCap(0, endPt, zup, 0.1f * startSize, Event.current.type);
@@ -249,7 +248,7 @@ namespace Unity.AI.Navigation.Editor
             }
 
             EditorGUI.BeginChangeCheck();
-            pos = Handles.Slider(midPt + right * navLink.width * 0.5f, right, midSize * 0.03f, Handles.DotHandleCap, 0);
+            pos = Handles.Slider(midPt + (right * navLink.width * 0.5f), right, midSize * 0.03f, Handles.DotHandleCap, 0);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(navLink, "Adjust link width");
@@ -257,7 +256,7 @@ namespace Unity.AI.Navigation.Editor
             }
 
             EditorGUI.BeginChangeCheck();
-            pos = Handles.Slider(midPt - right * navLink.width * 0.5f, -right, midSize * 0.03f, Handles.DotHandleCap, 0);
+            pos = Handles.Slider(midPt - (right * navLink.width * 0.5f), -right, midSize * 0.03f, Handles.DotHandleCap, 0);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(navLink, "Adjust link width");
@@ -268,7 +267,7 @@ namespace Unity.AI.Navigation.Editor
         }
 
         [MenuItem("GameObject/AI/NavMesh Link", false, 2002)]
-        static public void CreateNavMeshLink(MenuCommand menuCommand)
+        public static void CreateNavMeshLink(MenuCommand menuCommand)
         {
             var parent = menuCommand.context as GameObject;
             GameObject go = NavMeshComponentsGUIUtility.CreateAndSelectGameObject("NavMesh Link", parent);

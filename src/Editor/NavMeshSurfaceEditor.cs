@@ -6,7 +6,6 @@ using UnityEditor.AI;
 #if !UNITY_2021_2_OR_NEWER
 using UnityEditor.Experimental.SceneManagement;
 #endif
-using UnityEditor.SceneManagement;
 using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
 using UnityEngine.AI;
@@ -61,7 +60,7 @@ namespace Unity.AI.Navigation.Editor
 
         bool editingCollider
         {
-            get { return EditMode.editMode == EditMode.SceneViewEditMode.Collider && EditMode.IsOwner(this); }
+            get { return (EditMode.editMode == EditMode.SceneViewEditMode.Collider) && EditMode.IsOwner(this); }
         }
 
         void OnEnable()
@@ -256,7 +255,7 @@ namespace Unity.AI.Navigation.Editor
                 EditorGUI.EndProperty();
             }
 #endif
-            using (new EditorGUI.DisabledScope(Application.isPlaying || m_AgentTypeID.intValue == -1))
+            using (new EditorGUI.DisabledScope(Application.isPlaying || (m_AgentTypeID.intValue == -1)))
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(EditorGUIUtility.labelWidth);
