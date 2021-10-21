@@ -1,7 +1,7 @@
 {
   "name": "com.appalachia.unity3d.unity.nav-mesh-components",
   "displayName": "Nav Mesh Components",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "unity": "2020.3",
   "description": "High Level API Components for Runtime NavMesh Building",
   "keywords": [

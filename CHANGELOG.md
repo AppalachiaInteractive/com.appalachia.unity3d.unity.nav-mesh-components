@@ -12,6 +12,12 @@
 ## Releasing
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+| 005dabc01d9147a80e75e8b828edfa582a7a2537 | 2021-10-20 | Chris Schubert | Committing project and assembly management changes before regenerating project files |
+
+
+ ## Tag: `v0.1.5`
+| Hash | Date | Author | Changes |
+|------|------|--------|---------|
 | 1b58a3065456b9f7fc60f9dcae81f3e83e9f2f95 | 2021-10-16 | Chris Schubert | More project cleanup and refactoring |
 | fe227452be606f30664b010c8dbc71a064e97f98 | 2021-10-12 | Chris Schubert | Code cleanup and project restructuring |
 
