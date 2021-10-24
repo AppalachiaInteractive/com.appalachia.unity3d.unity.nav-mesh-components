@@ -12,6 +12,11 @@
 ## Releasing
 | Hash | Date | Author | Changes |
 |------|------|--------|---------|
+
+
+ ## Tag: `v0.1.6, origin/main`
+| Hash | Date | Author | Changes |
+|------|------|--------|---------|
 | 005dabc01d9147a80e75e8b828edfa582a7a2537 | 2021-10-20 | Chris Schubert | Committing project and assembly management changes before regenerating project files |
 
 
